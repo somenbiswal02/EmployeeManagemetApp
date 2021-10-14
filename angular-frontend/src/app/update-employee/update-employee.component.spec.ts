@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { UpdateEmployeeComponent } from './update-employee.component';
+import { EmployeeService } from './../employee.service';
 
 describe('UpdateEmployeeComponent', () => {
+  let employeeService:EmployeeService;
   let component: UpdateEmployeeComponent;
   let fixture: ComponentFixture<UpdateEmployeeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateEmployeeComponent ]
+      declarations: [ UpdateEmployeeComponent ],
+      imports:[HttpClientTestingModule,RouterTestingModule],
+      providers:[EmployeeService]
     })
     .compileComponents();
   }));
@@ -22,4 +28,8 @@ describe('UpdateEmployeeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should have updateEmployee function',()=>{
+    const service:EmployeeService=TestBed.get(employeeService);
+    expect(service.updateEmployee).toBeTruthy();
+  })
 });
